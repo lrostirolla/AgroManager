@@ -1,43 +1,60 @@
 import { useState } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import { SubmitButtons } from './SubmitButtons';
-import { Form, Row, Col } from 'react-bootstrap';
 import FarmForm from './ClientForm';
 import ClientInfo from './ClientTable';
-import { globals } from '../globals';
+import { addClient } from "../redux/clients/clientSlice";
+import { useDispatch, useSelector} from "react-redux";
+import { ClientDashBoard } from './ClientDashBoard';
+
+
+
 
 function Tabset() {
 
+  const dispatch = useDispatch();
+  const [key, setKey] = useState("client");
+  
+  const fetchAllClients = async () => {
+
+    try {
+      const response = await fetch(
+        `http://127.0.0.1:8000/api/client/get_clients`
+      );
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  fetchAllClients()
+  .then((data) => {
+    data.forEach(client => {
+      dispatch(addClient(client));
+    })
+  })
+  .catch((e) => {
+    console.log(e);
+  });
+
+
+
+
   return (
-    <Tabs  id = "agro-tab" className="mb-3 agro-tab-set" activeKey={"client"} onSelect={(k) => setKey(k)} >
+    <Tabs  id = "agro-tab" className="mb-3 agro-tab-set" activeKey={key} onSelect={(k) => setKey(k)} >
       <Tab eventKey="client" title="Cliente">
         <div className='agro-edit-client'> 
-          <SubmitButtons  />
           <div className='agro-edit-content'>
-            <Row>
-              <Col xs={3}>
-                <Form.Label htmlFor={`agro-cpf`}> CPF/CNPJ </Form.Label>
-                <Form.Control  type="text" id={`agro-cpf`} placeholder={"Digite o CPF/CNPJ do Cliente"}  onChange = {
-                  (e) => {
-                    globals["fetchCPF"] = e.target.value;
-                  }
-                }/> 
-              </Col>
-              <Col xs={9}>
-                <FarmForm type = {"edit"}/>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <ClientInfo/>
-              </Col>
-            </Row>
+          <FarmForm type = {"create"}/>
+          <ClientInfo/>
           </div>
         </div>
       </Tab>
       <Tab eventKey="infographcs" title="Gráficos">
-        <div className='agro-edit-content'></div>
+        <div className='agro-edit-content' >
+          <ClientDashBoard/>
+        </div>
       </Tab>
     </Tabs>
   );

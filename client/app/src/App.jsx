@@ -9,19 +9,12 @@ import FarmForm from './Components/ClientForm';
 import "./bootstrap.css";
 
 
-
 function App(){
   return <>
     <Container fluid>
-      <Row>
-        <Col className = "agro-side-bar" xs={3}> 
-          <FarmForm type = {"create"}/>
-        </Col>
-        <Col className = "agro-main-panel" xs={9}> 
-          <Tabset></Tabset>
-        </Col>
-      </Row>
+      <Tabset></Tabset>
     </Container>
+
   </>
 }
 

@@ -1,7 +1,7 @@
 from django.db import models
 
 class Client(models.Model):
-  CPF = models.CharField(max_length = 11, unique = True, blank=False)
+  CPF = models.CharField(max_length = 14, unique = True, blank=False)
   client_name = models.CharField(max_length=300)
   farm_name = models.CharField(max_length=300)
   city = models.CharField(max_length=300)
