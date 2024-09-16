@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import { crops, states } from '../globals';
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function getTotalAreaByState(clients, tag){

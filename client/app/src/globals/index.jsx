@@ -1,8 +1,3 @@
-export const globals = {
-  createHook : null, 
-  editHook : null,
-  fetchCPF : null
-}
 
 export const initialState = () => {
   return {

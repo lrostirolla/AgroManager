@@ -4,7 +4,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import FarmForm from './ClientForm';
 import ClientInfo from './ClientTable';
 import { addClient } from "../redux/clients/clientSlice";
-import { useDispatch, useSelector} from "react-redux";
+import { useDispatch } from "react-redux";
 import { ClientDashBoard } from './ClientDashBoard';
 
 
