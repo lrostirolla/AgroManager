@@ -45,7 +45,7 @@ const FarmForm = ({ type }) => {
     if(Object.keys(_errors).length === 0){
       clientData.CPF = removeSpecialCharacters(clientData.CPF);
       const response = await fetch(
-        "http://127.0.0.1:8000/api/client/create",
+        "/api/client/create",
         {
           method: "POST",
           headers: {

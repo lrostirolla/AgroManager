@@ -31,7 +31,7 @@ function TableContent({  values }) {
   
   const update = async (clientData) => {
     const response = await fetch(
-      `http://127.0.0.1:8000/api/client/${client.CPF}`,
+      `/api/client/${client.CPF}`,
       {
         method: "PUT",
         headers: {
@@ -47,7 +47,7 @@ function TableContent({  values }) {
   const removeClient = async () => {
     try{
       const response = await fetch(
-        `http://127.0.0.1:8000/api/client/${client.CPF}`,
+        `/api/client/${client.CPF}`,
         {
           method: "DELETE"
         }

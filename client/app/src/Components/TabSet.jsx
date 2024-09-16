@@ -19,7 +19,7 @@ function Tabset() {
 
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/api/client/get_clients`
+        `api/client/get_clients`
       );
       const data = await response.json();
       return data;
